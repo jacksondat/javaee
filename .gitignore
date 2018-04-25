@@ -1,0 +1,11 @@
+#temporales Eclipse
+.metadata
+.recommenders
+.sonarlint
+RemoteSystemsTempFiles
+Servers
+.classpath
+.gradle
+.project
+.settings
+bin
