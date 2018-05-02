@@ -1,0 +1,32 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+eclipse {
+	wtp {
+		facet {
+			facet name:'jst.ejb', version:'3.0'
+			facet name:'java', version: '1.8'
+		}
+	}
+}
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    test.compileClasspath += configurations.compileOnly
+    test.runtimeClasspath += configurations.compileOnly
+}
+
+dependencies {
+	compile 'org.glassfish.main.appclient:gf-client:5.0'
+
+	compileOnly 'javax:javaee-api:8.0'
+    
+    testCompile 'junit:junit:4.12'
+}
+
