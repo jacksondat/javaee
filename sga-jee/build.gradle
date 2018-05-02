@@ -23,10 +23,9 @@ sourceSets {
 }
 
 dependencies {
-	compile 'org.glassfish.main.appclient:gf-client:5.0'
-
 	compileOnly 'javax:javaee-api:8.0'
     
     testCompile 'junit:junit:4.12'
+    testCompile 'org.glassfish.main.extras:glassfish-embedded-all:5.0'
 }
 

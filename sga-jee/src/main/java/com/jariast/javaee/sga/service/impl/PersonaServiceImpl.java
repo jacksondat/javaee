@@ -6,10 +6,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 
 import com.jariast.javaee.sga.domain.Persona;
+import com.jariast.javaee.sga.service.PersonaService;
 import com.jariast.javaee.sga.service.PersonaServiceRemote;
 
 @Stateless
-public class PersonaServiceImpl implements PersonaServiceRemote {
+public class PersonaServiceImpl implements PersonaServiceRemote, PersonaService {
 
 	@Override
 	public List<Persona> listarPersonas() {
