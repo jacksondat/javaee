@@ -9,3 +9,5 @@ Servers
 .project
 .settings
 bin
+build
+gradle
