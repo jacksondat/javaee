@@ -1,0 +1,21 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    test.compileClasspath += configurations.compileOnly
+    test.runtimeClasspath += configurations.compileOnly
+}
+
+dependencies {
+	compileOnly 'javax:javaee-api:8.0'
+
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.glassfish.main.extras:glassfish-embedded-all:5.0'
+}
+
