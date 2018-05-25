@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    jcenter()
+}
+
+sourceSets {
+    test.compileClasspath += configurations.compileOnly
+    test.runtimeClasspath += configurations.compileOnly
+}
+
+dependencies {
+	compile 'org.apache.logging.log4j:log4j-core:2.11.0'
+		
+	compileOnly 'javax:javaee-api:8.0'
+	compileOnly 'mysql:mysql-connector-java:8.0.11'
+    
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.glassfish.main.extras:glassfish-embedded-all:5.0'
+}
