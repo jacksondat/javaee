@@ -2,26 +2,30 @@ package com.jariast.javaee.sga.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+@Entity
+@NamedQueries({
+	@NamedQuery(name="persona.findAll", query="SELECT p FROM Persona p ORDER BY p.id")})
+@Table(name="persona")
 public class Persona implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
+	
 	private String name;
 	private String lastname;
 	private String email;
 	private String phone;
-	
-	public Persona(int id, String name, String lastname, String email, String phone) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.lastname = lastname;
-		this.email = email;
-		this.phone = phone;
-	}
-
-	public Persona() {}
 
 	public int getId() {
 		return id;
@@ -65,7 +69,7 @@ public class Persona implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + name
+		return "Persona [nombre=" + name
                 + ", apellido=" + lastname + ", email=" + email + ", telefono=" + phone + "]";
 	}
 	
