@@ -14,26 +14,25 @@ public class PersonaServiceIPCLient {
 	
 	public static void main(String[] args) {
 		try {
-			Properties props = new Properties();
-            props.setProperty("java.naming.factory.initial", "com.sun.enterprise.naming.SerialInitContextFactory");
-            props.setProperty("java.naming.factory.url.pkgs", "com.sun.enterprise.naming");
-            props.setProperty("java.naming.factory.state", "com.sun.corba.ee.impl.presentation.rmi.JNDIStateFactoryImpl");
-
-            // optional. Default localhost. Aqui se cambia la IP del servidor donde está Glassfish
-            props.setProperty("org.omg.CORBA.ORBInitialHost", "127.0.0.1");
-
-            // optional. Puerto por Default 3700. Solo se necesita cambiar si el puerto no es 3700.
-            //props.setProperty("org.omg.CORBA.ORBInitialPort", "3700");
+			Properties jndiProps = new Properties();
+			jndiProps.put(Context.INITIAL_CONTEXT_FACTORY, "org.jboss.naming.remote.client.InitialContextFactory");
+			jndiProps.put(Context.PROVIDER_URL,"http-remoting://localhost:8080");
+			// username
+			jndiProps.put(Context.SECURITY_PRINCIPAL, "admin");
+			// password
+			jndiProps.put(Context.SECURITY_CREDENTIALS, "admin");
             
-            Context jndi = new InitialContext(props);
+            Context jndi = new InitialContext(jndiProps);
 			
-			PersonaServiceRemote personaService = (PersonaServiceRemote) jndi.lookup("java:global/sga-jee/PersonaServiceImpl!com.jariast.javaee.sga.service.PersonaServiceRemote");
-			
+			PersonaServiceRemote personaService = (PersonaServiceRemote) jndi.lookup("sga-jee/PersonaServiceImpl!com.jariast.javaee.sga.service.PersonaServiceRemote");
+            
 			List<Persona> personas = personaService.listarPersonas();
 			
 			for (Persona persona : personas) {
 				System.out.println(persona);
 			}
+			
+			System.out.println(personas.size());
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
